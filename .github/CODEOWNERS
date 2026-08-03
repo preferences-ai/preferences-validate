@@ -1,0 +1,6 @@
+# Preferences AI skill maintainers review every repository change.
+* @preferences-ai/skill-collaborators
+
+# Keep repository controls under the same owner team.
+/.github/ @preferences-ai/skill-collaborators
+/.github/CODEOWNERS @preferences-ai/skill-collaborators
