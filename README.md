@@ -38,8 +38,7 @@ The recommended installer is the open-source [`skills`](https://github.com/verce
 The project-scoped installation is shared with the project team:
 
 ```bash
-npx skills add preferences-ai/preferences-validate \
-  --skill preferences-validate
+npx skills add preferences-ai/preferences-validate
 ```
 
 The CLI uses symlinks by default and places a canonical copy under `.agents/skills/`. Use `--copy` when symlinks are not available.
@@ -50,7 +49,6 @@ Global installation makes the skill available across projects for your user acco
 
 ```bash
 npx skills add preferences-ai/preferences-validate \
-  --skill preferences-validate \
   --global
 ```
 
@@ -60,7 +58,6 @@ Install the same skill for every supported agent detected by the CLI:
 
 ```bash
 npx skills add preferences-ai/preferences-validate \
-  --skill preferences-validate \
   --agent '*'
 ```
 
