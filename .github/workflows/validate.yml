@@ -2,17 +2,9 @@ name: Validate skill
 
 on:
   pull_request:
-    paths:
-      - "skills/preferences-validate/**"
-      - "scripts/validate_skill.py"
-      - ".github/workflows/validate.yml"
   push:
     branches:
       - main
-    paths:
-      - "skills/preferences-validate/**"
-      - "scripts/validate_skill.py"
-      - ".github/workflows/validate.yml"
 
 permissions:
   contents: read

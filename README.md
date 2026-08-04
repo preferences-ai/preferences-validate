@@ -4,6 +4,36 @@
 
 The skill uses the public Preferences AI Dashboard API with a Team API key and PAI Credits. It is distributed as a portable `SKILL.md` package and can be used with Claude Code, Codex, Cursor, Grok Build, Hermes Agent, and other agents that support the Agent Skills format.
 
+## See it in action
+
+This example shows a completed Preferences AI simulation report:
+
+![Completed Preferences AI simulation report](docs/images/preferencesai-simulation-report.png)
+
+*A completed report summarizes the target population, respondent count, confidence level, question count, and executive findings.*
+
+### Example: Cursor workflow
+
+The same skill can be initiated and run from a Cursor coding agent:
+
+#### 1. Start a validation request
+
+![Initiate preferences-validate in Cursor](docs/images/cursor-initiate-preferences-validate.png)
+
+*Ask the agent to run `preferences-validate` with a concrete research question and target audience.*
+
+#### 2. Confirm paid simulation spend
+
+![Confirm paid simulation in Cursor](docs/images/cursor-confirm-paid-simulation.png)
+
+*The agent asks for explicit approval before starting a paid simulation; the `2.49 PAI` amount shown is an example, so always check the live balance and catalog.*
+
+#### 3. Review findings and next steps
+
+![Review completed simulation findings in Cursor](docs/images/cursor-simulation-complete.png)
+
+*The completed response presents key findings, caveats, and a link to the full Preferences AI report.*
+
 ## What this skill does
 
 Use `preferences-validate` when you need evidence for a product decision:
