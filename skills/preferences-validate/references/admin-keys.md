@@ -1,7 +1,6 @@
 # API keys
 
 **Required permission:** `admin:keys`
-
 **Setup:** [setup-auth.md](setup-auth.md)
 
 Create and manage Team API keys. Prefer the Dashboard when a person is creating

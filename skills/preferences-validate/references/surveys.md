@@ -1,7 +1,6 @@
 # Surveys, responses, analytics, and deployment
 
 **Permissions:** `surveys:build|create|read|update|deploy|suspend`, `responses:read`, `analytics:read|run`
-
 **Pricing:** building and self-distributed links do not use catalog PAI — [pricing.md](pricing.md)
 
 ```bash
@@ -42,6 +41,11 @@ Synchronous (often 3–10s). Use `survey_content` sections when persisting.
 
 Use the returned `data.survey_content` array in place of the sample sections
 below when persisting a generated survey.
+
+**Hand-built surveys:** if you author sections/questions yourself (or heavily
+edit build output), follow the full create contract —
+[survey-create-schema.md](survey-create-schema.md) (question types, choices,
+`imageLink` for imagepicker).
 
 ```bash
 curl -sS -X POST "$PAI_API_BASE/surveys" \

@@ -29,6 +29,7 @@ over scenario-only paths.
 
 1. Clarify research objective + audience (`population_query`)
 2. `POST /surveys/build` → review `survey_content` — [surveys.md](surveys.md)
+   _(or hand-author the body — [survey-create-schema.md](survey-create-schema.md))_
 3. `POST /surveys` → save `survey_id`; optional `GET`/`PUT` refine
 4. `POST /simulations/estimate-cost` with `survey_id` — [simulations.md](simulations.md)
 5. `GET /balance` → money-compare ≥ `pai_cost`

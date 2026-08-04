@@ -11,7 +11,7 @@ description: >
   with PreferencesAI. Keywords: validation layer, concept test, preferences
   validate, preferencesai.io, PAI Credits, AI Digital Population, survey,
   simulation, analytics.
-version: 1.0.2
+version: 1.0.3
 author: Preferences AI (https://preferencesai.io)
 license: MIT
 platforms: [linux, macos, windows]
@@ -154,15 +154,16 @@ Full list: [setup-auth.md](references/setup-auth.md).
 
 ## Further reading
 
-| File                                                    | Contents                       |
-| ------------------------------------------------------- | ------------------------------ |
-| [setup-auth.md](references/setup-auth.md)               | Access, scopes, response shape |
-| [pricing.md](references/pricing.md)                     | Prices, free trials, plans     |
-| [admin-keys.md](references/admin-keys.md)               | Create and revoke keys         |
-| [scenarios.md](references/scenarios.md)                 | Concept tests                  |
-| [scenario-picker.md](references/scenario-picker.md)     | Which scenario type to pick    |
-| [surveys.md](references/surveys.md)                     | Surveys, analytics, deploy     |
-| [simulations.md](references/simulations.md)             | AI Digital Population runs     |
-| [combinations.md](references/combinations.md)           | End-to-end validation recipes  |
-| [errors.md](references/errors.md)                       | Errors → what to do            |
-| [interpret-results.md](references/interpret-results.md) | How to present findings        |
+| File                                                          | Contents                        |
+| ------------------------------------------------------------- | ------------------------------- |
+| [setup-auth.md](references/setup-auth.md)                     | Access, scopes, response shape  |
+| [pricing.md](references/pricing.md)                           | Prices, free trials, plans      |
+| [admin-keys.md](references/admin-keys.md)                     | Create and revoke keys          |
+| [scenarios.md](references/scenarios.md)                       | Concept tests                   |
+| [scenario-picker.md](references/scenario-picker.md)           | Which scenario type to pick     |
+| [surveys.md](references/surveys.md)                           | Surveys, analytics, deploy      |
+| [survey-create-schema.md](references/survey-create-schema.md) | Hand-built `POST /surveys` body |
+| [simulations.md](references/simulations.md)                   | AI Digital Population runs      |
+| [combinations.md](references/combinations.md)                 | End-to-end validation recipes   |
+| [errors.md](references/errors.md)                             | Errors → what to do             |
+| [interpret-results.md](references/interpret-results.md)       | How to present findings         |

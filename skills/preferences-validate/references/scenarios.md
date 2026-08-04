@@ -1,9 +1,7 @@
 # Concept tests (scenarios)
 
 **Permissions:** `scenario:read`, `scenario:run`, `scenario:estimate`, `balance:read`
-
 **Pricing:** free / `"0.99"` Quick Concept Test, `"1.99"` full scenario — [pricing.md](pricing.md)
-
 **Picker:** [scenario-picker.md](scenario-picker.md)
 
 ```bash

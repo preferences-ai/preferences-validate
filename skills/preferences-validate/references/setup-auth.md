@@ -3,7 +3,6 @@
 **API base URL:** `$PAI_API_BASE`
 Default: `https://dashboard.preferencesai.io/api/v1`
 **Auth:** `X-API-Key: $PREFERENCES_AI_API_KEY` (keys start with `pak_`)
-
 **Docs:** Dashboard → API Management → API docs (or the published developer API reference)
 
 ```bash
