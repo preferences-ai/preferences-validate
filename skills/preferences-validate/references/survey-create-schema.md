@@ -19,14 +19,13 @@ choice lists, or image options.
 
 ## Top-level body
 
-| Field          | Required | Notes                                                      |
-| -------------- | -------- | ---------------------------------------------------------- |
-| `survey_title` | Yes      | Max 200 characters                                         |
-| `survey_type`  | Yes      | Category hint (e.g. `general`, `product_market_fit`)       |
-| `survey_goal`  | Yes      | What you want to learn                                     |
-| `sections`     | Yes      | Min 1 [section](#section)                                  |
-| `theme`        | No       | Optional colours / font / button style (see developer-api) |
-| `status`       | No       | Create accepts `draft` only (default)                      |
+| Field          | Required | Notes                                                |
+| -------------- | -------- | ---------------------------------------------------- |
+| `survey_title` | Yes      | Max 200 characters                                   |
+| `survey_type`  | Yes      | Category hint (e.g. `general`, `product_market_fit`) |
+| `survey_goal`  | Yes      | What you want to learn                               |
+| `sections`     | Yes      | Min 1 [section](#section)                            |
+| `status`       | No       | Create accepts `draft` only (default)                |
 
 ## Section
 
@@ -65,7 +64,7 @@ choice lists, or image options.
 | `multiple_choice` | Single select                     | `choices` as `string[]`                               |
 | `multiple_select` | Multi select                      | `choices` as `string[]`                               |
 | `rank`            | Ordered preference                | `choices` as `string[]`                               |
-| `rate`            | Likert / stars                    | `rateValues` (e.g. `[1,2,3,4,5]`); optional labels    |
+| `rate`            | Likert / numeric scale            | `rateValues` (e.g. `[1,2,3,4,5]`); optional labels    |
 | `text`            | Free text                         | optional `placeholder`, `maxLength`                   |
 | `yes_no`          | Binary                            | optional `labelTrue`, `labelFalse`                    |
 | `html`            | Static HTML block (not an answer) | optional `html`                                       |
@@ -74,20 +73,25 @@ choice lists, or image options.
 
 ### Type-specific fields (API create)
 
-| Field                      | Used by         | Notes                              |
-| -------------------------- | --------------- | ---------------------------------- |
-| `rateValues`               | `rate`          | Number array, e.g. `[1,2,3,4,5]`   |
-| `minRateDescription`       | `rate`          | Label for low end                  |
-| `maxRateDescription`       | `rate`          | Label for high end                 |
-| `displayMode`              | `rate`          | `buttons` \| `stars` \| `dropdown` |
-| `sub_questions`            | `matrix_choice` | Row labels (`string[]`)            |
-| `html`                     | `html`          | Markup string                      |
-| `labelTrue` / `labelFalse` | `yes_no`        | Button labels                      |
-| `placeholder`              | `text`          | Input hint                         |
-| `maxLength`                | `text`          | Max characters                     |
+| Field                      | Used by         | Notes                                                   |
+| -------------------------- | --------------- | ------------------------------------------------------- |
+| `rateValues`               | `rate`          | Number array, e.g. `[1,2,3,4,5]`                        |
+| `minRateDescription`       | `rate`          | Label for low end                                       |
+| `maxRateDescription`       | `rate`          | Label for high end                                      |
+| `sub_questions`            | `matrix_choice` | Row labels (`string[]`)                                 |
+| `html`                     | `html`          | Markup string                                           |
+| `labelTrue` / `labelFalse` | `yes_no`        | Button labels                                           |
+| `placeholder`              | `text`          | Input hint                                              |
+| `maxLength`                | `text`          | Max characters                                          |
+
+Renderer-specific fields are intentionally omitted from this create contract.
+`rateValues` and the optional low/high labels are sufficient for a rate
+question. Do not add raw SurveyJS fields such as `rateType` or
+`displayMode` unless the live Preferences AI API documentation explicitly
+lists them for `CreateSurveySchema`.
 
 Do **not** send richer Dashboard editor-only fields (`multiSelect`,
-`imageHeight`, `cellType`, etc.) on create — they are not in
+`imageHeight`, `cellType`, `rateType`, etc.) on create — they are not in
 `CreateSurveySchema` and are **stripped / ignored** by Zod (they do not
 cause a validation error).
 
@@ -143,8 +147,7 @@ curl -sS -X POST "$PAI_API_BASE/surveys" \
             "choices": [],
             "rateValues": [1, 2, 3, 4, 5],
             "minRateDescription": "Not at all",
-            "maxRateDescription": "Extremely likely",
-            "displayMode": "stars"
+            "maxRateDescription": "Extremely likely"
           }
         ]
       }

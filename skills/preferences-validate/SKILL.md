@@ -11,7 +11,7 @@ description: >
   with PreferencesAI. Keywords: validation layer, concept test, preferences
   validate, preferencesai.io, PAI Credits, AI Digital Population, survey,
   simulation, analytics.
-version: 1.0.3
+version: 1.0.4
 author: Preferences AI (https://preferencesai.io)
 license: MIT
 platforms: [linux, macos, windows]

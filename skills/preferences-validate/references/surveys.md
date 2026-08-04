@@ -35,17 +35,33 @@ curl -sS -X POST "$PAI_API_BASE/surveys/build" \
   }' | python3 -m json.tool
 ```
 
-Synchronous (often 3–10s). Use `survey_content` sections when persisting.
+Synchronous (often 3–10s). Returns `data.survey_content` (sections array).
+
+## Normalize before persist
+
+Do **not** POST raw `survey_content` blindly. `POST /surveys` uses
+`CreateSurveySchema` — blank or missing section fields fail with
+`VALIDATION_ERROR`. Before create:
+
+1. Map build sections into the create body (`survey_title`, `survey_type`,
+   `survey_goal`, `sections`)
+2. For **each** section, ensure non-empty:
+   - `section_id` (e.g. `s1`, `s2` if missing)
+   - `section_title`
+   - `section_goal` — fill from the section title / research goal if build
+     left `""` (markdown conversion can omit `Goal:`)
+3. Ensure every section has ≥1 question; each question has a valid
+   `question_type` and non-empty `question`
+4. Spot-check types/choices/images against
+   [survey-create-schema.md](survey-create-schema.md)
+
+**Hand-built surveys:** author (or heavily edit) the body using that same
+schema reference.
 
 ## Persist survey
 
-Use the returned `data.survey_content` array in place of the sample sections
-below when persisting a generated survey.
-
-**Hand-built surveys:** if you author sections/questions yourself (or heavily
-edit build output), follow the full create contract —
-[survey-create-schema.md](survey-create-schema.md) (question types, choices,
-`imageLink` for imagepicker).
+After normalization, persist (sample below shows a valid hand-shaped body;
+replace `sections` with your normalized build output when using `/surveys/build`):
 
 ```bash
 curl -sS -X POST "$PAI_API_BASE/surveys" \
