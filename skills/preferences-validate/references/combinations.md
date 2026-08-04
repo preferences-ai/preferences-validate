@@ -29,14 +29,18 @@ over scenario-only paths.
 
 1. Clarify research objective + audience (`population_query`)
 2. `POST /surveys/build` → review `survey_content` — [surveys.md](surveys.md)
-3. `POST /surveys` → save `survey_id`; optional `GET`/`PUT` refine
-4. `POST /simulations/estimate-cost` with `survey_id` — [simulations.md](simulations.md)
-5. `GET /balance` → money-compare ≥ `pai_cost`
-6. Confirm spend (autonomous) → `POST /simulations` with `desired_respondent_count`
-7. Poll `GET /simulations/:id/status` (10–30s) until `completed` / `failed`
-8. `GET /simulations/:id` → read `insights`, `analysis`, `charts`
-9. Interpret with [interpret-results.md](interpret-results.md) simulation template
-10. Optional: share-link; or follow-up wave (Recipe D)
+   _(or hand-author — [survey-create-schema.md](survey-create-schema.md))_
+3. **Normalize** sections (`section_id` / non-empty `section_goal`, etc.) —
+   [surveys.md](surveys.md#normalize-before-persist) ·
+   [survey-create-schema.md](survey-create-schema.md)
+4. `POST /surveys` → save `survey_id`; optional `GET`/`PUT` refine
+5. `POST /simulations/estimate-cost` with `survey_id` — [simulations.md](simulations.md)
+6. `GET /balance` → money-compare ≥ `pai_cost`
+7. Confirm spend (autonomous) → `POST /simulations` with `desired_respondent_count`
+8. Poll `GET /simulations/:id/status` (10–30s) until `completed` / `failed`
+9. `GET /simulations/:id` → read `insights`, `analysis`, `charts`
+10. Interpret with [interpret-results.md](interpret-results.md) simulation template
+11. Optional: share-link; or follow-up wave (Recipe D)
 
 **Next:** Share report; iterate survey; follow-up dig; or deploy for real respondents (Recipe C).
 

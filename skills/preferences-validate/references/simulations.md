@@ -1,9 +1,7 @@
 # AI Digital Population simulations
 
 **Permissions:** `balance:read`, `simulation:estimate`, `simulation:run`, `simulation:read`
-
 **Requires:** a saved `survey_id` ([surveys.md](surveys.md))
-
 **Pricing:** shorter `"2.49"` / standard `"3.99"` / follow-up `"1.99"` — [pricing.md](pricing.md)
 
 ```bash
