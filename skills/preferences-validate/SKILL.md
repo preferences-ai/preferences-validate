@@ -67,7 +67,7 @@ workflow when targeting another environment:
 export PAI_API_BASE="${PAI_API_BASE:-https://dashboard.preferencesai.io/api/v1}"
 ```
 
-**Auth header:** `X-API-Key: $PREFERENCES_AI_API_KEY`
+**Auth header:** `X-API-Key: $PREFERENCES_AI_API_KEY`  
 Your team is implied by the key — never send `team_id` in the body.
 
 Before any paid work, call `GET /balance` and confirm `pai_balance` is present.
@@ -141,7 +141,9 @@ Full list: [setup-auth.md](references/setup-auth.md).
 4. On errors, use [errors.md](references/errors.md)
 5. Deliver a clear brief with [interpret-results.md](references/interpret-results.md);
    co-interpret the API JSON with the optional shared Markdown report when a
-   completed simulation or analytics share link is available
+   completed simulation or analytics share link is available. Full scenario
+   `analysis_v2` may include audience screen and panel-mix charts; Quick Concept
+   Test leaves those keys empty — skip them rather than inventing mix stats.
 
 ## Security & tenancy
 

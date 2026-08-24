@@ -45,17 +45,23 @@ of evidence and does not replace the authenticated API response.
 
 ## Scenario runs (`GET /scenario-runs/:id`)
 
-| Field / path                         | Use                                |
-| ------------------------------------ | ---------------------------------- |
-| `status`                             | Must be `completed` before verdict |
-| `insights` / key findings            | One-line outcome + evidence        |
-| `agent_context.winner` (if present)  | `concept_id`, construct, mean      |
-| `analysis` / `charts`                | Deeper breakdown                   |
-| Request concepts                     | Map `concept_id` → user names      |
-| Submit `pai_cost` / `billing_source` | Spend line in brief                |
-| Status `pai_refunded`                | Paid failure credit restored       |
+| Field / path                               | Use                                                                                          |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| `status`                                   | Must be `completed` before verdict                                                           |
+| `insights` / key findings                  | One-line outcome + evidence                                                                  |
+| `agent_context.winner` (if present)        | `concept_id`, construct, mean                                                                |
+| `analysis` / `charts`                      | Deeper concept breakdown (not panel mix)                                                     |
+| `analysis_v2.overview.audience_screening`  | Full scenario only: modal panel facts (`bullets[].fact`). Omit when null/missing (quick-run) |
+| `analysis_v2.charts.profile_distributions` | Full scenario only: age / income / thematic mix bars. Empty on quick-run                     |
+| Request concepts                           | Map `concept_id` → user names                                                                |
+| Submit `pai_cost` / `billing_source`       | Spend line in brief                                                                          |
+| Status `pai_refunded`                      | Paid failure credit restored                                                                 |
 
 Quick-run ≈ directional (~85% CI defaults). Full scenario honors your CI / constructs.
+
+When `audience_screening` is an object **and** `profile_distributions` is non-empty, treat mix as a **directional screen of the synthetic panel**, not a census or verified household income. Do not rebuild percentages from v1 `insights` / `charts`. If those keys are missing or empty (Quick Concept Test, older jobs), skip them — do not invent an empty-state warning.
+
+Share Markdown (when present) adds `### Audience screen` and `### Panel mix`; co-interpret those headings with the API JSON using the rules above.
 
 ### Scenario report template
 
@@ -63,8 +69,9 @@ Quick-run ≈ directional (~85% CI defaults). Full scenario honors your CI / con
 2. **Spend** — `billing_source`, `pai_cost`, freemium remaining or `pai_balance_after`
 3. **Verdict** — leading concept on primary construct
 4. **Evidence** — 2–4 bullets
-5. **Caveats** — AI Digital Population is directional validation, not a substitute for live customers
-6. **Next** — iterate concepts; escalate to **survey → simulation** ([combinations.md](combinations.md) Recipe A) when deeper evidence is needed; optional share link + Markdown report
+5. **Panel** — if `audience_screening` is present, 1–2 mix facts plus the directional (not census) caveat
+6. **Caveats** — AI Digital Population is directional validation, not a substitute for live customers
+7. **Next** — iterate concepts; escalate to **survey → simulation** ([combinations.md](combinations.md) Recipe A) when deeper evidence is needed; optional share link + Markdown report
 
 ---
 
