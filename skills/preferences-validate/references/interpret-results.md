@@ -14,6 +14,10 @@ API response and the public report export as complementary representations:
 2. If a share link does not exist, create one after completion:
 
    ```bash
+   # Scenario run (Quick Concept Test or full)
+   curl -sS -X POST "$PAI_API_BASE/scenario-runs/${RUN_ID}/share-link" \
+     "${CURL_AUTH[@]}" | python3 -m json.tool
+
    # Simulation
    curl -sS -X POST "$PAI_API_BASE/simulations/${SIMULATION_ID}/share-link" \
      "${CURL_AUTH[@]}" | python3 -m json.tool
@@ -23,10 +27,14 @@ API response and the public report export as complementary representations:
      "${CURL_AUTH[@]}" | python3 -m json.tool
    ```
 
-3. Take the returned `data.share_url` and request its LLM-friendly export:
+3. Copy `data.share_url` for humans (HTML; already has campaign params — use
+   as-is). For the LLM-friendly export, GET the canonical path with
+   `data.share_code`. Do **not** append `?format=` to `share_url` (a second `?`
+   is not a new query parameter):
 
    ```bash
-   curl -fsSL "${SHARE_URL}?format=markdown"
+   SHARE_CODE="YzAbCdEfGhIj" # from data.share_code
+   curl -fsSL "https://dashboard.preferencesai.io/report/${SHARE_CODE}?format=markdown"
    ```
 
    The Markdown GET is public and does not use the API key. A share URL is an

@@ -1,6 +1,6 @@
 # Surveys, responses, analytics, and deployment
 
-**Permissions:** `surveys:build|create|read|update|deploy|suspend`, `responses:read`, `analytics:read|run`
+**Permissions:** `surveys:build|create|read|update|deploy|suspend`, `responses:read`, `analytics:read|run`  
 **Pricing:** building and self-distributed links do not use catalog PAI — [pricing.md](pricing.md)
 
 ```bash
@@ -115,12 +115,13 @@ Share when analytics completed:
 curl -sS -X POST "$PAI_API_BASE/surveys/${SURVEY_ID}/analytics/share-link" "${CURL_AUTH[@]}" | python3 -m json.tool
 ```
 
-Copy `data.share_url` from the response and fetch the LLM-friendly analytics
-report companion (no API key is needed for this public capability URL):
+Copy `data.share_url` from the response for humans (HTML; already has campaign
+parameters — use as-is). For the LLM-friendly export, use `data.share_code` on
+the canonical path (no API key). Do **not** append `?format=` to `share_url`:
 
 ```bash
-export SHARE_URL="https://dashboard.preferencesai.io/report/<share_code>"
-curl -fsSL "${SHARE_URL}?format=markdown"
+SHARE_CODE="MnOpQrStUvWx" # from data.share_code
+curl -fsSL "https://dashboard.preferencesai.io/report/${SHARE_CODE}?format=markdown"
 ```
 
 Use the Markdown export to understand the executive summary, metrics, insight
