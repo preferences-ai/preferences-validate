@@ -1,7 +1,7 @@
 # Concept tests (scenarios)
 
-**Permissions:** `scenario:read`, `scenario:run`, `scenario:estimate`, `balance:read`
-**Pricing:** free / `"0.99"` Quick Concept Test, `"1.99"` full scenario — [pricing.md](pricing.md)
+**Permissions:** `scenario:read`, `scenario:run`, `scenario:estimate`, `balance:read`  
+**Pricing:** free / `"0.99"` Quick Concept Test, `"1.99"` full scenario — [pricing.md](pricing.md)  
 **Picker:** [scenario-picker.md](scenario-picker.md)
 
 ```bash
@@ -173,7 +173,10 @@ curl -sS -X POST "$PAI_API_BASE/scenario-runs/${RUN_ID}/share-link" "${CURL_AUTH
 curl -sS -X DELETE "$PAI_API_BASE/scenario-runs/${RUN_ID}/share-link" "${CURL_AUTH[@]}" | python3 -m json.tool
 ```
 
-Public URL: `https://dashboard.preferencesai.io/report/{share_code}` (`?format=json|markdown` optional).
+Public HTML: use returned `data.share_url` as-is (includes campaign parameters).
+For JSON/Markdown exports, use `data.share_code` on the canonical path
+`https://dashboard.preferencesai.io/report/{share_code}?format=json|markdown`.
+Do **not** append `?format=` to `share_url` (it already has a query string).
 
 ## Interpret
 

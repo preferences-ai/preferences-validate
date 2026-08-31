@@ -1,7 +1,7 @@
 # AI Digital Population simulations
 
-**Permissions:** `balance:read`, `simulation:estimate`, `simulation:run`, `simulation:read`
-**Requires:** a saved `survey_id` ([surveys.md](surveys.md))
+**Permissions:** `balance:read`, `simulation:estimate`, `simulation:run`, `simulation:read`  
+**Requires:** a saved `survey_id` ([surveys.md](surveys.md))  
 **Pricing:** shorter `"2.49"` / standard `"3.99"` / follow-up `"1.99"` — [pricing.md](pricing.md)
 
 ```bash
@@ -79,12 +79,13 @@ List: `GET /simulations?status=completed&survey_id=…`
 curl -sS -X POST "$PAI_API_BASE/simulations/${SIMULATION_ID}/share-link" "${CURL_AUTH[@]}" | python3 -m json.tool
 ```
 
-Copy `data.share_url` from the response and fetch the LLM-friendly report
-companion (no API key is needed for this public capability URL):
+Copy `data.share_url` from the response for humans (HTML; already has campaign
+parameters — use as-is). For the LLM-friendly export, use `data.share_code` on
+the canonical path (no API key). Do **not** append `?format=` to `share_url`:
 
 ```bash
-export SHARE_URL="https://dashboard.preferencesai.io/report/<share_code>"
-curl -fsSL "${SHARE_URL}?format=markdown"
+SHARE_CODE="AbCdEfGhIjKl" # from data.share_code
+curl -fsSL "https://dashboard.preferencesai.io/report/${SHARE_CODE}?format=markdown"
 ```
 
 Use this Markdown export to understand the report structure and narrative, then
